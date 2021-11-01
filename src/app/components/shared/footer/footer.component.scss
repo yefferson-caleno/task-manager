@@ -1,0 +1,20 @@
+.custom-footer {
+    border-top: 17px solid #2848AB;
+    border-bottom: 17px solid #2848AB;
+    background: var(--unnamed-color-162c70) 0% 0% no-repeat padding-box;
+    background: #162C70 0% 0% no-repeat padding-box;
+    opacity: 1;
+}
+.footer-info {
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-21)/var(--unnamed-line-spacing-25) Montserrat;
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-ffffff);
+    text-align: center;
+    font: normal normal normal 21px/25px Montserrat;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+    display: inline-block;
+    margin-top: 20px;
+    margin-left: 10px;
+}
