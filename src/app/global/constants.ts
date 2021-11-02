@@ -6,8 +6,20 @@ export const constants = {
     status: {
         ENTRY_POINT: "/status/"
     },
+    role: {
+        ENTRY_POINT: "/role/"
+    },
+    state: {
+        ENTRY_POINT: "/state/"
+    },
     team: {
         ENTRY_POINT: "/team/"
+    },
+    user: {
+        ENTRY_POINT: "/user/"
+    },
+    task: {
+        ENTRY_POINT: "/task/"
     },
     toastOptions: {
         opacity: 1,
