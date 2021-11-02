@@ -14,6 +14,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { UserModalComponent } from './components/modals/user-modal/user-modal.component';
 import { TasksComponent } from './pages/tasks/tasks.component';
 import { TaskModalComponent } from './components/modals/task-modal/task-modal.component';
+import { AuthComponent } from './components/auth/auth.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { TaskModalComponent } from './components/modals/task-modal/task-modal.co
     UsersComponent,
     UserModalComponent,
     TasksComponent,
-    TaskModalComponent
+    TaskModalComponent,
+    AuthComponent
   ],
   imports: [
     BrowserModule,
