@@ -14,7 +14,7 @@
                     <div class="col-md-12">
                         <div class="active">
                             <label for="user_name"><strong>Nombre del usuario*: </strong></label>
-                            <input type="text" class="form-control"
+                            <input type="text" class="form-control"  [(ngModel)]="user.name"
                                 name="user_name" placeholder="Nombre del usuario:" 
                             />
                         </div>
@@ -23,7 +23,7 @@
                     <div class="col-md-12">
                         <div class="active">
                             <label for="email_name"><strong>Correo electrónico*: </strong></label>
-                            <input type="text" class="form-control"
+                            <input type="text" class="form-control"  [(ngModel)]="user.email"
                                 name="email_name" placeholder="Correo electrónico:" 
                             />
                         </div>
@@ -32,12 +32,12 @@
                     <div class="col-md-12">
                         <div class="active">
                             <label for="role"><strong>Rol: </strong></label>
-                            <input type="text" class="form-control" 
+                            <input type="text" class="form-control"  [value]="(roles)?roles[user.roleId-1]?.description:''"
                                 name="role" placeholder="Seleccione un rol ... " readonly
                             />
                             <span class="open-select"></span>
-                            <select class="select_status" name="select_role">
-                                <option value=""></option>
+                            <select class="select_status" name="select_role" [(ngModel)]="user.roleId">
+                                <option [ngStyle]="{'display':(role.status.id == 2)?'none':''}" [value]="role.id" *ngFor="let role of roles; let ir = index;">{{ role.description }}</option>
                             </select>
                         </div>
                         <br>
@@ -45,12 +45,25 @@
                     <div class="col-md-12">
                         <div class="active">
                             <label for="status"><strong>Estado: </strong></label>
-                            <input type="text" class="form-control" 
+                            <input type="text" class="form-control" [value]="(statuss)?statuss[user.statusId-1]?.description:''"
                                 name="status" placeholder="Seleccione un estado ... " readonly
                             />
                             <span class="open-select"></span>
-                            <select class="select_status" name="select_status">
-                                <option value=""></option>
+                            <select class="select_status" name="select_status" [(ngModel)]="user.statusId">
+                                <option [value]="status.id" *ngFor="let status of statuss; let is = index;">{{ status.description }}</option>
+                            </select>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="active">
+                            <label for="team"><strong>Equipo: </strong></label>
+                            <input type="text" class="form-control" [value]="(teams)?teams[user.teamId-1]?.description:''"
+                                name="team" placeholder="Seleccione un equipo ... " readonly
+                            />
+                            <span class="open-select"></span>
+                            <select class="select_status" name="select_team" [(ngModel)]="user.teamId">
+                                <option [ngStyle]="{'display':(team.status.id == 2)?'none':''}" [value]="team.id" *ngFor="let team of teams; let it = index;">{{ team.description }}</option>
                             </select>
                         </div>
                         <br>
@@ -58,7 +71,7 @@
                     <div class="col-md-12">
                         <div class="active">
                             <label for="password"><strong>Contraseña*: </strong></label>
-                            <input type="text" class="form-control"
+                            <input type="password" class="form-control" [(ngModel)]="password"
                                 name="password" placeholder="Contraseña:" 
                             />
                         </div>
@@ -67,7 +80,7 @@
                     <div class="col-md-12">
                         <div class="active">
                             <label for="confirm_password"><strong>Confirmar Contraseña*: </strong></label>
-                            <input type="text" class="form-control"
+                            <input type="password" class="form-control" [(ngModel)]="passConfirm"
                                 name="confirm_password" placeholder="Confirmar Contraseña:" 
                             />
                         </div>
@@ -76,8 +89,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
+                <button type="button" id="closeUserModal" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="save()">{{ userId!=0?'Actualizar':'Guardar' }}</button>
             </div>
         </div>
     </div>

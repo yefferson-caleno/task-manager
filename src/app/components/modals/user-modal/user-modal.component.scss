@@ -35,7 +35,7 @@
                     border-bottom: 2px solid #5fbae9;
                 }
 
-                input[type=text] {
+                input[type=text], input[type=password] {
                     border-color: transparent;
                     font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-18)/var(--unnamed-line-spacing-34) var(--unnamed-font-family-roboto);
                     letter-spacing: var(--unnamed-character-spacing-0);
