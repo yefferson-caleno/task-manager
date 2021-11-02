@@ -1,0 +1,91 @@
+<div class="tasks">
+    <div class="container">
+        <div class="table-responsive">
+            <div class="table">
+                <div class="row">
+                    <div class="col-md-6">
+                        <br><div class="title-header">ADMINISTRACIÓN DE TAREAS</div><br><br>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <br><div class="title-header custom-add" data-toggle="modal" data-target="#task-modal"><strong>+</strong> AGREGAR UNA TAREA</div><br><br>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <table>
+                    <thead class="text-center">
+                        <tr>
+                            <th>TAREA</th>
+                            <th>DESARROLLADOR</th>
+                            <th>ESTADO</th>
+                            <th>ACCION</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr>
+                            <td><b>Diseñar e implementar Base de Datos</b></td>
+                            <td><b>Pepito Perez</b></td>
+                            <td><b>Cerrada</b></td>
+                            <td>
+                                <button class="btn">
+                                    <img width="30" title="Editar Equipo" src="assets/img/edit.svg" alt="Icon Edit" data-toggle="modal" data-target="#task-modal">
+                                </button>
+                                <button class="btn">
+                                    <img width="30" title="Eliminar Equipo" src="assets/img/delete.svg" alt="Icon Delete">
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Desarrollar backend </b></td>
+                            <td><b>Pepote Perez</b></td>
+                            <td><b>Activo</b></td>
+                            <td>
+                                <button class="btn">
+                                    <img width="30" title="Editar Equipo" src="assets/img/edit.svg" alt="Icon Edit" data-toggle="modal" data-target="#task-modal">
+                                </button>
+                                <button class="btn">
+                                    <img width="30" title="Eliminar Equipo" src="assets/img/delete.svg" alt="Icon Delete">
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Desarrollar frontend</b></td>
+                            <td><b>Yefferson Caleño</b></td>
+                            <td><b>Nueva</b></td>
+                            <td>
+                                <button class="btn">
+                                    <img width="30" title="Editar Equipo" src="assets/img/edit.svg" alt="Icon Edit" data-toggle="modal" data-target="#task-modal">
+                                </button>
+                                <button class="btn">
+                                    <img width="30" title="Eliminar Equipo" src="assets/img/delete.svg" alt="Icon Delete">
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><b>Realizar mockups de proyecto</b></td>
+                            <td><b>Digley Barrera</b></td>
+                            <td><b>Impedimento</b></td>
+                            <td>
+                                <button class="btn">
+                                    <img width="30" title="Editar Equipo" src="assets/img/edit.svg" alt="Icon Edit" data-toggle="modal" data-target="#task-modal">
+                                </button>
+                                <button class="btn">
+                                    <img width="30" title="Eliminar Equipo" src="assets/img/delete.svg" alt="Icon Delete">
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot class="text-center">
+                        <tr>
+                            <th>TAREA</th>
+                            <th>DESARROLLADOR</th>
+                            <th>ESTADO</th>
+                            <th>ACCION</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-task-modal></app-task-modal>

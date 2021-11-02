@@ -1,0 +1,79 @@
+<!-- Modal -->
+<div class="modal fade" id="task-modal" tabindex="-1" role="dialog" aria-labelledby="taskModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="taskModalLabel">TAREA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="active">
+                            <label for="task_name"><strong>Nombre de la tarea*: </strong></label>
+                            <input type="text" class="form-control"
+                                name="task_name" placeholder="Nombre de la tarea:" 
+                            />
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="active">
+                            <label for="team"><strong>Equipo: </strong></label>
+                            <input type="text" class="form-control" 
+                                name="team" placeholder="Seleccione un Equipo ... " readonly
+                            />
+                            <span class="open-select"></span>
+                            <select class="select_status" name="select_team">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="active">
+                            <label for="user"><strong>Desarrollador: </strong></label>
+                            <input type="text" class="form-control" 
+                                name="user" placeholder="Seleccione un desarrollador ... " readonly
+                            />
+                            <span class="open-select"></span>
+                            <select class="select_status" name="select_user">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="active">
+                            <label for="status"><strong>Estado: </strong></label>
+                            <input type="text" class="form-control" 
+                                name="status" placeholder="Seleccione un estado ... " readonly
+                            />
+                            <span class="open-select"></span>
+                            <select class="select_status" name="select_status">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="active">
+                            <label for="description"><strong>Descripción: </strong></label><br>
+                            <textarea name="description" id="description" cols="58" rows="5" 
+                                placeholder="Escribe aqui porque deseas cancelar la cita ...">
+                            </textarea>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
