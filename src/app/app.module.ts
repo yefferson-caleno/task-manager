@@ -10,6 +10,8 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { HomeComponent } from './pages/home/home.component';
 import { TeamsComponent } from './pages/teams/teams.component';
 import { TeamModalComponent } from './components/modals/team-modal/team-modal.component';
+import { UsersComponent } from './pages/users/users.component';
+import { UserModalComponent } from './components/modals/user-modal/user-modal.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { TeamModalComponent } from './components/modals/team-modal/team-modal.co
     FooterComponent,
     HomeComponent,
     TeamsComponent,
-    TeamModalComponent
+    TeamModalComponent,
+    UsersComponent,
+    UserModalComponent
   ],
   imports: [
     BrowserModule,
