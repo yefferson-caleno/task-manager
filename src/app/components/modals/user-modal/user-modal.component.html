@@ -1,0 +1,84 @@
+<!-- Modal -->
+<div class="modal fade" id="user-modal" tabindex="-1" role="dialog" aria-labelledby="userModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="userModalLabel">USUARIO</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="active">
+                            <label for="user_name"><strong>Nombre del usuario*: </strong></label>
+                            <input type="text" class="form-control"
+                                name="user_name" placeholder="Nombre del usuario:" 
+                            />
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="active">
+                            <label for="email_name"><strong>Correo electrónico*: </strong></label>
+                            <input type="text" class="form-control"
+                                name="email_name" placeholder="Correo electrónico:" 
+                            />
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="active">
+                            <label for="role"><strong>Rol: </strong></label>
+                            <input type="text" class="form-control" 
+                                name="role" placeholder="Seleccione un rol ... " readonly
+                            />
+                            <span class="open-select"></span>
+                            <select class="select_status" name="select_role">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="active">
+                            <label for="status"><strong>Estado: </strong></label>
+                            <input type="text" class="form-control" 
+                                name="status" placeholder="Seleccione un estado ... " readonly
+                            />
+                            <span class="open-select"></span>
+                            <select class="select_status" name="select_status">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="active">
+                            <label for="password"><strong>Contraseña*: </strong></label>
+                            <input type="text" class="form-control"
+                                name="password" placeholder="Contraseña:" 
+                            />
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="active">
+                            <label for="confirm_password"><strong>Confirmar Contraseña*: </strong></label>
+                            <input type="text" class="form-control"
+                                name="confirm_password" placeholder="Confirmar Contraseña:" 
+                            />
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
