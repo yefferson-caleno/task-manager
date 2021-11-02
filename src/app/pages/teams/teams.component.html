@@ -7,7 +7,7 @@
                         <br><div class="title-header">ADMINISTRACIÓN DE EQUIPOS</div><br><br>
                     </div>
                     <div class="col-md-4 text-center">
-                        <br><div class="title-header custom-add" data-toggle="modal" data-target="#team-modal"><strong>+</strong> AGREGAR UN EQUIPO</div><br><br>
+                        <br><div class="title-header custom-add" data-toggle="modal" data-target="#team-modal" (click)="teamId=0"><strong>+</strong> AGREGAR UN EQUIPO</div><br><br>
                     </div>
                     <div class="col-md-2"></div>
                 </div>
@@ -21,55 +21,25 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">
-                        <tr>
-                            <td><b>Administradores</b></td>
-                            <td><b>10/10/2021</b></td>
-                            <td><b>Activo</b></td>
-                            <td>
-                                <button class="btn">
-                                    <img width="30" title="Editar Equipo" src="assets/img/edit.svg" alt="Icon Edit" data-toggle="modal" data-target="#team-modal">
-                                </button>
-                                <button class="btn">
-                                    <img width="30" title="Eliminar Equipo" src="assets/img/delete.svg" alt="Icon Delete">
-                                </button>
-                            </td>
+                        <tr *ngIf="!teams">
+                            <td></td>
+                            <td class="info-table">Buscando historial ... </td>
                         </tr>
-                        <tr>
-                            <td><b>Diseñadores</b></td>
-                            <td><b>10/10/2021</b></td>
-                            <td><b>Activo</b></td>
+                        <tr *ngIf="teams?.length == 0">
+                            <td></td>
+                            <td class="info-table">Sin resultados. </td>
+                        </tr> 
+                        <tr *ngFor="let team of teams; let i = index;">
+                            <td><b>{{ team.description }}</b></td>
+                            <td><b>{{ team.created.split('T').join(' ') }}</b></td>
+                            <td><b>{{ team.status.description }}</b></td>
                             <td>
                                 <button class="btn">
-                                    <img width="30" title="Editar Equipo" src="assets/img/edit.svg" alt="Icon Edit" data-toggle="modal" data-target="#team-modal">
+                                    <img width="30" title="Editar Equipo" src="assets/img/edit.svg" alt="Icon Edit" 
+                                        data-toggle="modal" data-target="#team-modal" (click)="teamId = team.id">
                                 </button>
-                                <button class="btn">
-                                    <img width="30" title="Eliminar Equipo" src="assets/img/delete.svg" alt="Icon Delete">
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>Maquetadores</b></td>
-                            <td><b>10/11/2021</b></td>
-                            <td><b>Activo</b></td>
-                            <td>
-                                <button class="btn">
-                                    <img width="30" title="Editar Equipo" src="assets/img/edit.svg" alt="Icon Edit" data-toggle="modal" data-target="#team-modal">
-                                </button>
-                                <button class="btn">
-                                    <img width="30" title="Eliminar Equipo" src="assets/img/delete.svg" alt="Icon Delete">
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>Arquitectos</b></td>
-                            <td><b>10/12/2021</b></td>
-                            <td><b>Activo</b></td>
-                            <td>
-                                <button class="btn">
-                                    <img width="30" title="Editar Equipo" src="assets/img/edit.svg" alt="Icon Edit" data-toggle="modal" data-target="#team-modal">
-                                </button>
-                                <button class="btn">
-                                    <img width="30" title="Eliminar Equipo" src="assets/img/delete.svg" alt="Icon Delete">
+                                <button class="btn" (click)="delete(team.id)" [disabled]="team.status.id == 2" [ngStyle]="{'cursor':(team.status.id == 2)?'not-allowed':'pointer'}">
+                                    <img width="30" title="Inactivar Equipo" src="assets/img/delete.svg" alt="Icon Delete">
                                 </button>
                             </td>
                         </tr>
@@ -88,4 +58,4 @@
     </div>
 </div>
 
-<app-team-modal></app-team-modal>
+<app-team-modal [teamId]="teamId" (confirm)="onConfirm($event)"></app-team-modal>

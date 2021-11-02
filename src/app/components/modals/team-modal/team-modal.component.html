@@ -14,27 +14,30 @@
               <div class="col-md-12">
                 <div class="active">
                     <label for="team_name"><strong>Nombre del equipo*: </strong></label>
-                    <input type="text" class="form-control"
+                    <input type="text" class="form-control" [(ngModel)]="team.description"
                         name="team_name" placeholder="Nombre del equipo:" 
                     />
                 </div>
                 <br>
+              </div>
+              <div class="col-md-12">
                 <div class="active">
-                    <label for="status"><strong>Estado: </strong></label>
-                    <input type="text" class="form-control" 
-                        name="status" placeholder="Seleccione un estado ... " readonly
-                    />
-                    <span class="open-select"></span>
-                    <select class="select_status" name="select_status">
-                        <option value=""></option>
-                    </select>
+                  <label for="status"><strong>Estado: </strong></label>
+                  <input type="text" class="form-control" [value]="(statuss)?statuss[team.statusId-1]?.description:''"
+                      name="status" placeholder="Seleccione un estado ... " readonly
+                  />
+                  <span class="open-select"></span>
+                  <select class="select_status" name="select_status" [(ngModel)]="team.statusId">
+                      <option [value]="status.id" *ngFor="let status of statuss; let is = index;">{{ status.description }}</option>
+                  </select>
                 </div>
+                <br>
               </div>
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary">Guardar</button>
+          <button type="button" id="closeTeamModal" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="save()">{{ teamId!=0?'Actualizar':'Guardar' }}</button>
         </div>
       </div>
     </div>
