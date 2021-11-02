@@ -12,6 +12,8 @@ import { TeamsComponent } from './pages/teams/teams.component';
 import { TeamModalComponent } from './components/modals/team-modal/team-modal.component';
 import { UsersComponent } from './pages/users/users.component';
 import { UserModalComponent } from './components/modals/user-modal/user-modal.component';
+import { TasksComponent } from './pages/tasks/tasks.component';
+import { TaskModalComponent } from './components/modals/task-modal/task-modal.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { UserModalComponent } from './components/modals/user-modal/user-modal.co
     TeamsComponent,
     TeamModalComponent,
     UsersComponent,
-    UserModalComponent
+    UserModalComponent,
+    TasksComponent,
+    TaskModalComponent
   ],
   imports: [
     BrowserModule,
