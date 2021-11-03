@@ -21,6 +21,9 @@ export const constants = {
     task: {
         ENTRY_POINT: "/task/"
     },
+    login: {
+        ENTRY_POINT: "/login/"
+    },
     toastOptions: {
         opacity: 1,
         enableHtml: true

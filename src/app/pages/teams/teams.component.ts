@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { constants } from 'src/app/global/constants';
+import { LoginResponse } from 'src/app/models/login/login.model';
 import { Team, TeamRequest } from 'src/app/models/teams/team.model';
 import { TeamsService } from 'src/app/services/teams/teams.service';
 
@@ -14,10 +16,19 @@ export class TeamsComponent implements OnInit {
   teams: Array<Team>;
   constructor(
     private teamService: TeamsService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem('userLogin')) {
+      const user:LoginResponse = JSON.parse(localStorage.getItem('userLogin'));
+      if (user.role.id != 1) {
+        this.router.navigate(['tasks']);
+      }
+    } else {
+      this.router.navigate(['']);
+    }
     this.findAllTeams();
   }
 
