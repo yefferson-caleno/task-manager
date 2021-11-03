@@ -7,7 +7,7 @@
                         <br><div class="title-header">ADMINISTRACIÓN DE TAREAS</div><br><br>
                     </div>
                     <div class="col-md-4 text-center">
-                        <br><div class="title-header custom-add" data-toggle="modal" data-target="#task-modal"><strong>+</strong> AGREGAR UNA TAREA</div><br><br>
+                        <br><div class="title-header custom-add" data-toggle="modal" data-target="#task-modal" (click)="taskId=0"><strong>+</strong> AGREGAR UNA TAREA</div><br><br>
                     </div>
                     <div class="col-md-2"></div>
                 </div>
@@ -21,55 +21,25 @@
                         </tr>
                     </thead>
                     <tbody class="text-center">
-                        <tr>
-                            <td><b>Diseñar e implementar Base de Datos</b></td>
-                            <td><b>Pepito Perez</b></td>
-                            <td><b>Cerrada</b></td>
-                            <td>
-                                <button class="btn">
-                                    <img width="30" title="Editar Equipo" src="assets/img/edit.svg" alt="Icon Edit" data-toggle="modal" data-target="#task-modal">
-                                </button>
-                                <button class="btn">
-                                    <img width="30" title="Eliminar Equipo" src="assets/img/delete.svg" alt="Icon Delete">
-                                </button>
-                            </td>
+                        <tr *ngIf="!tasks">
+                            <td></td>
+                            <td class="info-table">Buscando historial ... </td>
                         </tr>
-                        <tr>
-                            <td><b>Desarrollar backend </b></td>
-                            <td><b>Pepote Perez</b></td>
-                            <td><b>Activo</b></td>
+                        <tr *ngIf="tasks?.length == 0">
+                            <td></td>
+                            <td class="info-table">Sin resultados. </td>
+                        </tr> 
+                        <tr *ngFor="let task of tasks; let i = index;">
+                            <td><b>{{ task.title }}</b></td>
+                            <td><b>{{ task.userAssigned.name }}</b></td>
+                            <td><b>{{ task.state.description }}</b></td>
                             <td>
                                 <button class="btn">
-                                    <img width="30" title="Editar Equipo" src="assets/img/edit.svg" alt="Icon Edit" data-toggle="modal" data-target="#task-modal">
+                                    <img width="30" title="Editar Tarea" src="assets/img/edit.svg" alt="Icon Edit" 
+                                        data-toggle="modal" data-target="#task-modal" (click)="taskId = task.id">
                                 </button>
-                                <button class="btn">
-                                    <img width="30" title="Eliminar Equipo" src="assets/img/delete.svg" alt="Icon Delete">
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>Desarrollar frontend</b></td>
-                            <td><b>Yefferson Caleño</b></td>
-                            <td><b>Nueva</b></td>
-                            <td>
-                                <button class="btn">
-                                    <img width="30" title="Editar Equipo" src="assets/img/edit.svg" alt="Icon Edit" data-toggle="modal" data-target="#task-modal">
-                                </button>
-                                <button class="btn">
-                                    <img width="30" title="Eliminar Equipo" src="assets/img/delete.svg" alt="Icon Delete">
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>Realizar mockups de proyecto</b></td>
-                            <td><b>Digley Barrera</b></td>
-                            <td><b>Impedimento</b></td>
-                            <td>
-                                <button class="btn">
-                                    <img width="30" title="Editar Equipo" src="assets/img/edit.svg" alt="Icon Edit" data-toggle="modal" data-target="#task-modal">
-                                </button>
-                                <button class="btn">
-                                    <img width="30" title="Eliminar Equipo" src="assets/img/delete.svg" alt="Icon Delete">
+                                <button class="btn" (click)="delete(task.id)" [disabled]="task.status.id == 2" [ngStyle]="{'cursor':(task.status.id == 2)?'not-allowed':'pointer'}">
+                                    <img width="30" title="Eliminar Tarea" src="assets/img/delete.svg" alt="Icon Delete">
                                 </button>
                             </td>
                         </tr>
@@ -88,4 +58,4 @@
     </div>
 </div>
 
-<app-task-modal></app-task-modal>
+<app-task-modal [taskId]="taskId" (confirm)="onConfirm($event)"></app-task-modal>

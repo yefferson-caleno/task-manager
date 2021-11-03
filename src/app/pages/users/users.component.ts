@@ -35,6 +35,7 @@ export class UsersComponent implements OnInit {
   onConfirm(e: boolean):void {
     if (e) {
       this.users = null;
+      this.userId = 0;
       this.findAllUsers();
     }
   }
