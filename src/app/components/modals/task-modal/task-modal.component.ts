@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { constants } from 'src/app/global/constants';
+import { LoginResponse } from 'src/app/models/login/login.model';
 import { State } from 'src/app/models/states/states.model';
 import { Status } from 'src/app/models/status/status.model';
 import { Task, TaskRequest } from 'src/app/models/tasks/tasks.model';
@@ -20,6 +21,7 @@ import { UsersService } from 'src/app/services/users/users.service';
 export class TaskModalComponent implements OnInit {
   @Input() taskId: number;
   @Output() confirm = new EventEmitter<boolean>();
+  userL: LoginResponse = {};
   task: TaskRequest = {};
   statuss: Array<Status>;
   states: Array<State>;
@@ -35,10 +37,18 @@ export class TaskModalComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.findAllStatus();
-    this.findAllStates();
-    this.findAllTeams();
-    this.findAllUsers();
+    if(localStorage.getItem('userLogin')) {
+      this.userL = JSON.parse(localStorage.getItem('userLogin'));
+      this.findAllStatus();
+      this.findAllStates();
+      this.findAllUsers();
+      if(this.userL.role.description == 'Administrador') {
+        this.findAllTeams();
+      } else {
+        this.teams = [];
+        this.teams.push(this.userL.team);
+      }
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -106,7 +116,8 @@ export class TaskModalComponent implements OnInit {
     const r: boolean = window.confirm("¿Estás seguro(a) que deseas "+(this.taskId==0?"guardar":"actualizar")+" la información?");
     if(r) {
       if(this.taskId == 0) {
-        this.task.userCreatedEmail = "admin@admin.com";
+        this.task.userCreatedEmail = this.userL.email;
+        this.task.statusId = this.task.statusId?this.task.statusId:1; // Estado activo por defecto.
         this.saveTask(this.task);
       } else {
         this.updateTask(this.taskId, this.task);
@@ -121,7 +132,6 @@ export class TaskModalComponent implements OnInit {
         document.getElementById('closeTaskModal').click();
         this.confirm.emit(true);
       }, error => {
-        console.log(error);
         if(error.error.status == 400) {
           let l: string = '<ul>';
           error.error.errors.forEach(e => {
@@ -130,7 +140,7 @@ export class TaskModalComponent implements OnInit {
           l = l+'</ul>';
           this.toastService.error(l, error.error.message, constants.toastOptions);
         } else {
-          this.toastService.error(error.error.message, "¡Guardado fallido!", constants.toastOptions);  
+          this.toastService.error(error.error.message, "¡Operación fallida!", constants.toastOptions);  
         }
       }
     )
@@ -151,7 +161,7 @@ export class TaskModalComponent implements OnInit {
           l = l+'</ul>';
           this.toastService.error(l, error.error.message, constants.toastOptions);
         } else {
-          this.toastService.error(error.error.message, "¡Actualización fallida!", constants.toastOptions);  
+          this.toastService.error(error.error.message, "¡Operación fallida!", constants.toastOptions);  
         }
       }
     )

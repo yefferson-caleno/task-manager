@@ -37,7 +37,7 @@
                             />
                             <span class="open-select"></span>
                             <select class="select_status" name="select_role" [(ngModel)]="user.roleId">
-                                <option [ngStyle]="{'display':(role.status.id == 2)?'none':''}" [value]="role.id" *ngFor="let role of roles; let ir = index;">{{ role.description }}</option>
+                                <option [ngStyle]="{'display':(role.status.description == 'Inactivo')?'none':''}" [value]="role.id" *ngFor="let role of roles; let ir = index;">{{ role.description }}</option>
                             </select>
                         </div>
                         <br>
@@ -58,12 +58,14 @@
                     <div class="col-md-12">
                         <div class="active">
                             <label for="team"><strong>Equipo: </strong></label>
-                            <input type="text" class="form-control" [value]="(teams)?teams[user.teamId-1]?.description:''"
+                            <input type="text" class="form-control" 
+                                [value]="(teams && teams[user.teamId-1]?.status.description == 'Activo')?teams[user.teamId-1]?.description:''"
                                 name="team" placeholder="Seleccione un equipo ... " readonly
                             />
                             <span class="open-select"></span>
                             <select class="select_status" name="select_team" [(ngModel)]="user.teamId">
-                                <option [ngStyle]="{'display':(team.status.id == 2)?'none':''}" [value]="team.id" *ngFor="let team of teams; let it = index;">{{ team.description }}</option>
+                                <option [ngStyle]="{'display':(team.status.description == 'Inactivo')?'none':''}" [value]="team.id" 
+                                    *ngFor="let team of teams; let it = index;">{{ team.description }}</option>
                             </select>
                         </div>
                         <br>

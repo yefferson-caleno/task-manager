@@ -7,7 +7,11 @@
                         <br><div class="title-header">ADMINISTRACIÓN DE TAREAS</div><br><br>
                     </div>
                     <div class="col-md-4 text-center">
-                        <br><div class="title-header custom-add" data-toggle="modal" data-target="#task-modal" (click)="taskId=0"><strong>+</strong> AGREGAR UNA TAREA</div><br><br>
+                        <br>
+                        <div class="title-header custom-add" 
+                            data-toggle="modal" data-target="#task-modal" (click)="taskId=0">
+                                <strong>+</strong> AGREGAR UNA TAREA
+                        </div><br><br>
                     </div>
                     <div class="col-md-2"></div>
                 </div>
@@ -16,7 +20,9 @@
                         <tr>
                             <th>TAREA</th>
                             <th>DESARROLLADOR</th>
-                            <th>ESTADO</th>
+                            <th>EQUIPO</th>
+                            <th>PROGRESO</th>
+                            <th  *ngIf="userL.role.description == 'Administrador'">ESTADO</th>
                             <th>ACCION</th>
                         </tr>
                     </thead>
@@ -29,16 +35,22 @@
                             <td></td>
                             <td class="info-table">Sin resultados. </td>
                         </tr> 
-                        <tr *ngFor="let task of tasks; let i = index;">
+                        <tr [ngStyle]="{'display':((task.status.description == 'Inactivo' && userL.role.description != 'Administrador') ||
+                            (userL.role.description != 'Administrador' && userL.email != task.userAssigned.email))?'none':''}"  
+                            *ngFor="let task of tasks; let i = index;">
                             <td><b>{{ task.title }}</b></td>
-                            <td><b>{{ task.userAssigned.name }}</b></td>
+                            <td><b>{{ (task.userAssigned.status.description == 'Inactivo' || 
+                                    task.userAssigned.team.status.description == 'Inactivo')?' ---- : ---- ':task.userAssigned.name }}</b></td>
+                            <td><b>{{ task.team.status.description == 'Inactivo'?' ---- : ---- ':task.team.description }}</b></td>
                             <td><b>{{ task.state.description }}</b></td>
+                            <td *ngIf="userL.role.description == 'Administrador'"><b>{{ task.status.description }}</b></td>
                             <td>
                                 <button class="btn">
                                     <img width="30" title="Editar Tarea" src="assets/img/edit.svg" alt="Icon Edit" 
                                         data-toggle="modal" data-target="#task-modal" (click)="taskId = task.id">
                                 </button>
-                                <button class="btn" (click)="delete(task.id)" [disabled]="task.status.id == 2" [ngStyle]="{'cursor':(task.status.id == 2)?'not-allowed':'pointer'}">
+                                <button class="btn" (click)="delete(task.id)" [disabled]="task.status.description == 'Inactivo'" 
+                                    [ngStyle]="{'cursor':(task.status.description == 'Inactivo')?'not-allowed':'pointer'}">
                                     <img width="30" title="Eliminar Tarea" src="assets/img/delete.svg" alt="Icon Delete">
                                 </button>
                             </td>
@@ -48,7 +60,9 @@
                         <tr>
                             <th>TAREA</th>
                             <th>DESARROLLADOR</th>
-                            <th>ESTADO</th>
+                            <th>EQUIPO</th>
+                            <th>PROGRESO</th>
+                            <th  *ngIf="userL.role.description == 'Administrador'">ESTADO</th>
                             <th>ACCION</th>
                         </tr>
                     </tfoot>
