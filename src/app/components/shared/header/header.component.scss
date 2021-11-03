@@ -1,0 +1,39 @@
+.custom-navbar {
+    border-bottom: 12px solid #61C6E1;
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-bold) var(--unnamed-font-size-21)/var(--unnamed-line-spacing-22) var(--unnamed-font-family-roboto);
+    letter-spacing: var(--unnamed-character-spacing-0);
+    color: var(--unnamed-color-162c70);
+    .title {
+        padding-top: 15px;
+        cursor: pointer;
+    }
+    .user-icon {
+        width: 50px;
+    }
+
+    .select-logout {
+        position: absolute;
+        cursor: pointer;
+        margin-left: -50px;
+        width: 75px;
+        height: 60px;
+        opacity: 0;
+    }
+    
+    .open-select {
+        position: absolute;
+        width: 0;
+        height: 0;
+        top: 25px;
+        margin-left: 60px;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 10px solid #156499;
+    }
+}
+
+.custom-font {
+    font: normal normal bold 18px/22px Roboto;
+    letter-spacing: 0px;
+    color: #162C70;
+}

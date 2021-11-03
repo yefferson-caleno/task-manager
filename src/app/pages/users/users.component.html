@@ -1,0 +1,67 @@
+<div class="users">
+    <div class="container">
+        <div class="table-responsive">
+            <div class="table">
+                <div class="row">
+                    <div class="col-md-6">
+                        <br><div class="title-header">ADMINISTRACIÓN DE USUARIOS</div><br><br>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <br><div class="title-header custom-add" data-toggle="modal" data-target="#user-modal" (click)="userId=0"><strong>+</strong> AGREGAR UN USUARIO</div><br><br>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <table>
+                    <thead class="text-center">
+                        <tr>
+                            <th>NOMBRE</th>
+                            <th>CORREO ELECTRÓNICO</th>
+                            <th>FECHA DE CREACIÓN</th>
+                            <th>EQUIPO</th>
+                            <th>ESTADO</th>
+                            <th>ACCION</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr *ngIf="!users">
+                            <td></td>
+                            <td class="info-table">Buscando historial ... </td>
+                        </tr>
+                        <tr *ngIf="users?.length == 0">
+                            <td></td>
+                            <td class="info-table">Sin resultados. </td>
+                        </tr> 
+                        <tr *ngFor="let user of users; let i = index;">
+                            <td><b>{{ user.name }}</b></td>
+                            <td><b>{{ user.email }}</b></td>
+                            <td><b>{{ user.created.split('T').join(' ') }}</b></td>
+                            <td><b>{{ user.team.status.id==2?' ---- : ---- ':user.team.description }}</b></td>
+                            <td><b>{{ user.status.description }}</b></td>
+                            <td>
+                                <button class="btn">
+                                    <img width="30" title="Editar Usuario" src="assets/img/edit.svg" alt="Icon Edit" 
+                                        data-toggle="modal" data-target="#user-modal" (click)="userId = user.id">
+                                </button>
+                                <button class="btn" (click)="delete(user.id)" [disabled]="user.status.id == 2" [ngStyle]="{'cursor':(user.status.id == 2)?'not-allowed':'pointer'}">
+                                    <img width="30" title="Inactivar Usuario" src="assets/img/delete.svg" alt="Icon Delete">
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot class="text-center">
+                        <tr>
+                            <th>NOMBRE</th>
+                            <th>CORREO ELECTRÓNICO</th>
+                            <th>FECHA DE CREACIÓN</th>
+                            <th>EQUIPO</th>
+                            <th>ESTADO</th>
+                            <th>ACCION</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-user-modal [userId]="userId" (confirm)="onConfirm($event)"></app-user-modal>

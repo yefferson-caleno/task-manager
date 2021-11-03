@@ -1,0 +1,93 @@
+<!-- Modal -->
+<div class="modal fade" id="task-modal" tabindex="-1" role="dialog" aria-labelledby="taskModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="taskModalLabel">TAREA</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="active">
+                            <label for="task_name"><strong>Nombre de la tarea*: </strong></label>
+                            <input type="text" class="form-control"  [(ngModel)]="task.title"
+                                name="task_name" placeholder="Nombre de la tarea:" 
+                            />
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="active">
+                            <label for="team"><strong>Equipo: </strong></label>
+                            <input type="text" class="form-control" [value]="(teams)?teams[task.teamId-1]?.description:''"
+                                name="team" placeholder="Seleccione un equipo ... " readonly
+                            />
+                            <span class="open-select"></span>
+                            <select class="select_status" name="select_team" [(ngModel)]="task.teamId">
+                                <option [ngStyle]="{'display':(team.status.id == 2)?'none':''}" [value]="team.id" *ngFor="let team of teams; let it = index;">{{ team.description }}</option>
+                            </select>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="active">
+                            <label for="user"><strong>Desarrollador: </strong></label>
+                            <input type="text" class="form-control" [value]="(users)?users[task.userAssignedId-1]?.name:''"
+                                name="user" placeholder="Seleccione un desarrollador ... " readonly
+                            />
+                            <span class="open-select"></span>
+                            <select class="select_status" name="select_user" [(ngModel)]="task.userAssignedId">
+                                <option [ngStyle]="{'display':(userAssigned.status.id == 2 || userAssigned.team.id != task.teamId)?'none':''}" 
+                                    [value]="userAssigned.id" *ngFor="let userAssigned of users; let ius = index;">{{ userAssigned.name }}</option>
+                            </select>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="active">
+                            <label for="state"><strong>Progreso: </strong></label>
+                            <input type="text" class="form-control" [value]="(states)?states[task.stateId-1]?.description:''"
+                                name="state" placeholder="Seleccione un estado ... " readonly
+                            />
+                            <span class="open-select"></span>
+                            <select class="select_status" name="select_state" [(ngModel)]="task.stateId">
+                                <option [ngStyle]="{'display':(state.status.id == 2)?'none':''}" [value]="state.id" *ngFor="let state of states; let ist = index;">{{ state.description }}</option>
+                            </select>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="active">
+                            <label for="status"><strong>Estado: </strong></label>
+                            <input type="text" class="form-control" [value]="(statuss)?statuss[task.statusId-1]?.description:''"
+                                name="status" placeholder="Seleccione un estado ... " readonly
+                            />
+                            <span class="open-select"></span>
+                            <select class="select_status" name="select_status" [(ngModel)]="task.statusId">
+                                <option [value]="status.id" *ngFor="let status of statuss; let is = index;">{{ status.description }}</option>
+                            </select>
+                        </div>
+                        <br>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="active">
+                            <label for="description"><strong>Descripción: </strong></label><br>
+                            <textarea name="description" id="description" cols="58" rows="5" [(ngModel)]="task.description"
+                                placeholder="Escribe aqui porque deseas cancelar la cita ...">
+                            </textarea>
+                        </div>
+                        <br>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="closeTaskModal" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="save()">{{ taskId!=0?'Actualizar':'Guardar' }}</button>
+            </div>
+        </div>
+    </div>
+</div>

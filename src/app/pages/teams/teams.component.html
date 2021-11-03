@@ -1,0 +1,61 @@
+<div class="teams">
+    <div class="container">
+        <div class="table-responsive">
+            <div class="table">
+                <div class="row">
+                    <div class="col-md-6">
+                        <br><div class="title-header">ADMINISTRACIÓN DE EQUIPOS</div><br><br>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <br><div class="title-header custom-add" data-toggle="modal" data-target="#team-modal" (click)="teamId=0"><strong>+</strong> AGREGAR UN EQUIPO</div><br><br>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <table>
+                    <thead class="text-center">
+                        <tr>
+                            <th>EQUIPO</th>
+                            <th>FECHA DE CREACIÓN</th>
+                            <th>ESTADO</th>
+                            <th>ACCION</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr *ngIf="!teams">
+                            <td></td>
+                            <td class="info-table">Buscando historial ... </td>
+                        </tr>
+                        <tr *ngIf="teams?.length == 0">
+                            <td></td>
+                            <td class="info-table">Sin resultados. </td>
+                        </tr> 
+                        <tr *ngFor="let team of teams; let i = index;">
+                            <td><b>{{ team.description }}</b></td>
+                            <td><b>{{ team.created.split('T').join(' ') }}</b></td>
+                            <td><b>{{ team.status.description }}</b></td>
+                            <td>
+                                <button class="btn">
+                                    <img width="30" title="Editar Equipo" src="assets/img/edit.svg" alt="Icon Edit" 
+                                        data-toggle="modal" data-target="#team-modal" (click)="teamId = team.id">
+                                </button>
+                                <button class="btn" (click)="delete(team.id)" [disabled]="team.status.id == 2" [ngStyle]="{'cursor':(team.status.id == 2)?'not-allowed':'pointer'}">
+                                    <img width="30" title="Inactivar Equipo" src="assets/img/delete.svg" alt="Icon Delete">
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot class="text-center">
+                        <tr>
+                            <th>EQUIPO</th>
+                            <th>FECHA DE CREACIÓN</th>
+                            <th>ESTADO</th>
+                            <th>ACCION</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-team-modal [teamId]="teamId" (confirm)="onConfirm($event)"></app-team-modal>

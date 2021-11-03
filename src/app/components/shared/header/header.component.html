@@ -1,0 +1,18 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top custom-navbar">
+    <div class="row" style="width: 100%;">
+        <div class="col-md-6">
+            <p routerLink="/home" class="title custom-font">
+                <strong>TASK MANAGER</strong><br>
+            </p>
+        </div>
+        <div *ngIf="user.name" class="col-md-5 text-right">
+            <strong class="custom-font">{{ user?.name }}</strong><br>
+            <strong> {{ user.role?.description }} </strong>
+            
+        </div>
+        <div  *ngIf="user.name" class="col-md-1" title="Cerrar Sesión" style="cursor: pointer;" (click)="logout()">
+            <img src="assets/img/user-icon.png" alt="User Icon" class="user-icon">
+            <div class="open-select"></div>
+        </div>
+    </div>
+</nav>

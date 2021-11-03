@@ -1,0 +1,61 @@
+<div class="tasks">
+    <div class="container">
+        <div class="table-responsive">
+            <div class="table">
+                <div class="row">
+                    <div class="col-md-6">
+                        <br><div class="title-header">ADMINISTRACIÓN DE TAREAS</div><br><br>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <br><div class="title-header custom-add" data-toggle="modal" data-target="#task-modal" (click)="taskId=0"><strong>+</strong> AGREGAR UNA TAREA</div><br><br>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+                <table>
+                    <thead class="text-center">
+                        <tr>
+                            <th>TAREA</th>
+                            <th>DESARROLLADOR</th>
+                            <th>ESTADO</th>
+                            <th>ACCION</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        <tr *ngIf="!tasks">
+                            <td></td>
+                            <td class="info-table">Buscando historial ... </td>
+                        </tr>
+                        <tr *ngIf="tasks?.length == 0">
+                            <td></td>
+                            <td class="info-table">Sin resultados. </td>
+                        </tr> 
+                        <tr *ngFor="let task of tasks; let i = index;">
+                            <td><b>{{ task.title }}</b></td>
+                            <td><b>{{ task.userAssigned.name }}</b></td>
+                            <td><b>{{ task.state.description }}</b></td>
+                            <td>
+                                <button class="btn">
+                                    <img width="30" title="Editar Tarea" src="assets/img/edit.svg" alt="Icon Edit" 
+                                        data-toggle="modal" data-target="#task-modal" (click)="taskId = task.id">
+                                </button>
+                                <button class="btn" (click)="delete(task.id)" [disabled]="task.status.id == 2" [ngStyle]="{'cursor':(task.status.id == 2)?'not-allowed':'pointer'}">
+                                    <img width="30" title="Eliminar Tarea" src="assets/img/delete.svg" alt="Icon Delete">
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot class="text-center">
+                        <tr>
+                            <th>TAREA</th>
+                            <th>DESARROLLADOR</th>
+                            <th>ESTADO</th>
+                            <th>ACCION</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-task-modal [taskId]="taskId" (confirm)="onConfirm($event)"></app-task-modal>
