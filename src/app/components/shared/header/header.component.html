@@ -5,17 +5,14 @@
                 <strong>TASK MANAGER</strong><br>
             </p>
         </div>
-        <div class="col-md-5 text-right">
-            <strong class="custom-font">Pepito Perez</strong><br>
-            <strong>Administrador</strong>
+        <div *ngIf="user.name" class="col-md-5 text-right">
+            <strong class="custom-font">{{ user?.name }}</strong><br>
+            <strong> {{ user.role?.description }} </strong>
             
         </div>
-        <div class="col-md-1">
+        <div  *ngIf="user.name" class="col-md-1" title="Cerrar Sesión" style="cursor: pointer;" (click)="logout()">
             <img src="assets/img/user-icon.png" alt="User Icon" class="user-icon">
-            <div class="open-select"></div>                               
-            <select class="select-logout">
-                <option value="">Cerrar Sesión</option>
-            </select>
+            <div class="open-select"></div>
         </div>
     </div>
 </nav>

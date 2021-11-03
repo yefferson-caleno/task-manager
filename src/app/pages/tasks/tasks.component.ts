@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastService } from 'ng-uikit-pro-standard';
 import { constants } from 'src/app/global/constants';
 import { Task, TaskRequest } from 'src/app/models/tasks/tasks.model';
@@ -14,11 +15,15 @@ export class TasksComponent implements OnInit {
   tasks: Array<Task>;
   constructor(
     private taskService: TasksService,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router: Router
   ) { }
 
 
   ngOnInit(): void {
+    if(!localStorage.getItem('userLogin')) {
+      this.router.navigate(['']);
+    }
     this.findAllTasks();
   }
 
