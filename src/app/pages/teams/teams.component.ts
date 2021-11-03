@@ -66,7 +66,6 @@ export class TeamsComponent implements OnInit {
         this.toastService.success("El equipo se ha inactivado correctamente", "¡Actualización exitosa!", constants.toastOptions);
         this.onConfirm(true);
       }, error => {
-        console.log(error);
         if(error.error.status == 400) {
           let l: string = '<ul>';
           error.error.errors.forEach(e => {
@@ -74,6 +73,8 @@ export class TeamsComponent implements OnInit {
           });
           l = l+'</ul>';
           this.toastService.error(l, error.error.message, constants.toastOptions);
+        } else {
+          this.toastService.error(error.error.message, "¡Operación fallida!", constants.toastOptions);  
         }
       }
     )

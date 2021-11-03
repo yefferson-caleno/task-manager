@@ -53,7 +53,7 @@ export class AuthComponent implements OnInit {
           l = l+'</ul>';
           this.toastService.error(l, error.error.message, constants.toastOptions);
         } else {
-          this.toastService.error(error.error.message, "¡Inicio de sesión fallida!", constants.toastOptions);  
+          this.toastService.error(error.error.message, "¡Operación fallida!", constants.toastOptions);  
         }
       }
     )

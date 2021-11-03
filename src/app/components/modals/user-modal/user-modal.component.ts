@@ -104,6 +104,8 @@ export class UserModalComponent implements OnInit {
         if((this.password !=null || this.passConfirm != null) && (this.password != this.passConfirm)) {
           this.toastService.error("Las contraseñas deben coincidir", "¡Parámetros invalidos!", constants.toastOptions);
           return
+        } else if (this.password != null && this.password == this.passConfirm) {
+          this.user.password = this.password;
         }
         this.updateUser(this.userId, this.user);
       }
@@ -117,7 +119,6 @@ export class UserModalComponent implements OnInit {
         document.getElementById('closeUserModal').click();
         this.confirm.emit(true);
       }, error => {
-        console.log(error);
         if(error.error.status == 400) {
           let l: string = '<ul>';
           error.error.errors.forEach(e => {
@@ -125,6 +126,8 @@ export class UserModalComponent implements OnInit {
           });
           l = l+'</ul>';
           this.toastService.error(l, error.error.message, constants.toastOptions);
+        } else {
+          this.toastService.error(error.error.message, "¡Operación fallida!", constants.toastOptions);  
         }
       }
     )
@@ -144,6 +147,8 @@ export class UserModalComponent implements OnInit {
           });
           l = l+'</ul>';
           this.toastService.error(l, error.error.message, constants.toastOptions);
+        } else {
+          this.toastService.error(error.error.message, "¡Operación fallida!", constants.toastOptions);  
         }
       }
     )
