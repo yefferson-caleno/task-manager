@@ -38,7 +38,7 @@
                                     <img width="30" title="Editar Equipo" src="assets/img/edit.svg" alt="Icon Edit" 
                                         data-toggle="modal" data-target="#team-modal" (click)="teamId = team.id">
                                 </button>
-                                <button class="btn" (click)="delete(team.id)" [disabled]="team.status.id == 2" [ngStyle]="{'cursor':(team.status.id == 2)?'not-allowed':'pointer'}">
+                                <button class="btn" (click)="delete(team.id)" [disabled]="team.status.description == 'Inactivo'" [ngStyle]="{'cursor':(team.status.description == 'Inactivo')?'not-allowed':'pointer'}">
                                     <img width="30" title="Inactivar Equipo" src="assets/img/delete.svg" alt="Icon Delete">
                                 </button>
                             </td>
