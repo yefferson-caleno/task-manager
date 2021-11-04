@@ -56,6 +56,7 @@ export class TeamModalComponent implements OnInit {
   save(): void {
     const r: boolean = window.confirm("¿Estás seguro(a) que deseas "+(this.teamId==0?"guardar":"actualizar")+" la información?");
     if(r) {
+      this.toastService.info("Un momento, por favor ...", "¡Validando información!", constants.toastOptions);
       if(this.teamId == 0) {
         this.saveTeam(this.team);
       } else {
@@ -67,10 +68,12 @@ export class TeamModalComponent implements OnInit {
   saveTeam(team: TeamRequest): void {
     this.teamService.save(team).subscribe(
       success => {
+        this.toastService.clear();
         this.toastService.success("El equipo se ha guardado correctamente", "¡Guardado exitoso!", constants.toastOptions);
         document.getElementById('closeTeamModal').click();
         this.confirm.emit(true);
       }, error => {
+        this.toastService.clear();
         if(error.error.status == 400) {
           let l: string = '<ul>';
           error.error.errors.forEach(e => {
@@ -88,10 +91,12 @@ export class TeamModalComponent implements OnInit {
   updateTeam(id: number, team: TeamRequest): void {
     this.teamService.update(id, team).subscribe(
       success => {
+        this.toastService.clear();
         this.toastService.success("El equipo se ha actualizado correctamente", "Actualización exitosa!", constants.toastOptions);
         document.getElementById('closeTeamModal').click();
         this.confirm.emit(true);
       }, error => {
+        this.toastService.clear();
         if(error.error.status == 400) {
           let l: string = '<ul>';
           error.error.errors.forEach(e => {

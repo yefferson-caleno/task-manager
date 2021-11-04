@@ -31,7 +31,7 @@
                         </tr> 
                         <tr *ngFor="let team of teams; let i = index;">
                             <td><b>{{ team.description }}</b></td>
-                            <td><b>{{ team.created.split('T').join(' ') }}</b></td>
+                            <td><b>{{ team.created | date :'medium' }}</b></td>
                             <td><b>{{ team.status.description }}</b></td>
                             <td>
                                 <button class="btn">

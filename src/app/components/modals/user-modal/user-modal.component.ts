@@ -95,6 +95,7 @@ export class UserModalComponent implements OnInit {
   save(): void {
     const r: boolean = window.confirm("¿Estás seguro(a) que deseas "+(this.userId==0?"guardar":"actualizar")+" la información?");
     if(r) {
+      this.toastService.info("Un momento, por favor ...", "¡Validando información!", constants.toastOptions);
       if(this.userId == 0) {
         if (this.password != null && this.passConfirm != null && this.password == this.passConfirm) {
           this.user.password = this.password;
@@ -115,10 +116,12 @@ export class UserModalComponent implements OnInit {
   saveUser(user: UserRequest): void {
     this.userService.save(user).subscribe(
       success => {
+        this.toastService.clear();
         this.toastService.success("El usuario se ha guardado correctamente", "¡Guardado exitoso!", constants.toastOptions);
         document.getElementById('closeUserModal').click();
         this.confirm.emit(true);
       }, error => {
+        this.toastService.clear();
         if(error.error.status == 400) {
           let l: string = '<ul>';
           error.error.errors.forEach(e => {
@@ -136,10 +139,12 @@ export class UserModalComponent implements OnInit {
   updateUser(id: number, user: UserRequest): void {
     this.userService.update(id, user).subscribe(
       success => {
+        this.toastService.clear();
         this.toastService.success("El usuario se ha actualizado correctamente", "Actualización exitosa!", constants.toastOptions);
         document.getElementById('closeUserModal').click();
         this.confirm.emit(true);
       }, error => {
+        this.toastService.clear();
         if(error.error.status == 400) {
           let l: string = '<ul>';
           error.error.errors.forEach(e => {

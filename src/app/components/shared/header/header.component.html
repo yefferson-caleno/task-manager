@@ -5,14 +5,17 @@
                 <strong>TASK MANAGER</strong><br>
             </p>
         </div>
-        <div *ngIf="user.name" class="col-md-5 text-right">
-            <strong class="custom-font">{{ user?.name }}</strong><br>
-            <strong> {{ user.role?.description }} </strong>
-            
+        <div class="col-md-6 text-right-ct">
+            <div class="show-ctrl"></div>
+            <div *ngIf="user.name">
+                <strong class="custom-font">{{ user?.name }}</strong><br>
+                <strong> {{ user.role?.description }} </strong>
+            </div>
+            <div *ngIf="user.name" title="Cerrar Sesión" style="cursor: pointer;" (click)="logout()">
+                <img src="assets/img/user-icon.png" alt="User Icon" class="user-icon">
+                <div class="open-select"></div>
+            </div>
         </div>
-        <div  *ngIf="user.name" class="col-md-1" title="Cerrar Sesión" style="cursor: pointer;" (click)="logout()">
-            <img src="assets/img/user-icon.png" alt="User Icon" class="user-icon">
-            <div class="open-select"></div>
-        </div>
+        
     </div>
 </nav>

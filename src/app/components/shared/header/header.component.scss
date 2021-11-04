@@ -37,3 +37,23 @@
     letter-spacing: 0px;
     color: #162C70;
 }
+
+.text-right-ct {
+    text-align: right !important;
+    display:flex;
+    justify-content: space-between;
+}
+
+.show-ctrl {
+    width: 70%;
+    height: 100%;
+}
+
+@media screen and (max-width: 768px) {
+    .text-right-ct {
+        text-align: left !important;
+    }
+    .show-ctrl {
+        display: none !important;
+    }
+}

@@ -30,12 +30,14 @@ export class AuthComponent implements OnInit {
   }
 
   auth(): void {
+    this.toastService.info("Un momento, por favor ...", "¡Validando información!", constants.toastOptions);
     this.loginService.login(this.login).subscribe(
       success => {
         let userLogin: LoginResponse = success.data; 
         let userName: Array<string> = userLogin.name.split(" ");
         userLogin.name = (userName.length>1)? userName[0]+" "+userName[1]:userName[0]; 
         localStorage.setItem('userLogin', JSON.stringify(userLogin));
+        this.toastService.clear();
         this.toastService.success("Bienvenido(a): "+userLogin.name, "¡Datos correctos!", constants.toastOptions);
         setTimeout(()=> {
           if(userLogin.role.id == 1) {
@@ -45,6 +47,7 @@ export class AuthComponent implements OnInit {
           }
         }, 2000);
       }, error => {
+        this.toastService.clear();
         if(error.error.status == 400) {
           let l: string = '<ul>';
           error.error.errors.forEach(e => {
