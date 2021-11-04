@@ -13,3 +13,9 @@ app.get('/*', (req, res) =>
 
 // Start the app by listening on the default Heroku port
 app.listen(process.env.PORT || 8080);
+
+
+/********************************************************
+ * https://medium.com/@roliver_javier/como-desplegar-tu-aplicacion-de-angular-en-heroku-7b9941b6d39
+ * https://www.javaguides.net/2020/11/how-to-deploy-angular-application-to-heroku.html
+ ******************************************************** */
