@@ -44,7 +44,7 @@ export class TasksComponent implements OnInit {
   onConfirm(e: boolean):void {
     if (e) {
       this.tasks = null;
-      this.taskId = 0;
+      this.taskId = null;
       this.findAllTasks();
     }
   }
