@@ -34,7 +34,7 @@
                         <tr *ngFor="let user of users; let i = index;">
                             <td><b>{{ user.name }}</b></td>
                             <td><b>{{ user.email }}</b></td>
-                            <td><b>{{ user.created.split('T').join(' ') }}</b></td>
+                            <td><b>{{ user.created | date :'medium' }}</b></td>
                             <td><b>{{ user.team.status.description == 'Inactivo'?' ---- : ---- ':user.team.description }}</b></td>
                             <td><b>{{ user.status.description }}</b></td>
                             <td>

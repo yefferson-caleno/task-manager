@@ -115,6 +115,7 @@ export class TaskModalComponent implements OnInit {
   save(): void {
     const r: boolean = window.confirm("¿Estás seguro(a) que deseas "+(this.taskId==0?"guardar":"actualizar")+" la información?");
     if(r) {
+      this.toastService.info("Un momento, por favor ...", "¡Validando información!", constants.toastOptions);
       if(this.taskId == 0) {
         this.task.userCreatedEmail = this.userL.email;
         this.task.statusId = this.task.statusId?this.task.statusId:1; // Estado activo por defecto.
@@ -128,10 +129,12 @@ export class TaskModalComponent implements OnInit {
   saveTask(task: TaskRequest): void {
     this.taskService.save(task).subscribe(
       success => {
+        this.toastService.clear();
         this.toastService.success("La tarea se ha guardado correctamente", "¡Guardado exitoso!", constants.toastOptions);
         document.getElementById('closeTaskModal').click();
         this.confirm.emit(true);
       }, error => {
+        this.toastService.clear();
         if(error.error.status == 400) {
           let l: string = '<ul>';
           error.error.errors.forEach(e => {
@@ -149,10 +152,12 @@ export class TaskModalComponent implements OnInit {
   updateTask(id: number, task: TaskRequest): void {
     this.taskService.update(id, task).subscribe(
       success => {
+        this.toastService.clear();
         this.toastService.success("La tarea se ha actualizado correctamente", "Actualización exitosa!", constants.toastOptions);
         document.getElementById('closeTaskModal').click();
         this.confirm.emit(true);
       }, error => {
+        this.toastService.clear();
         if(error.error.status == 400) {
           let l: string = '<ul>';
           error.error.errors.forEach(e => {
