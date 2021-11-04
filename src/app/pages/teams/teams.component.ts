@@ -45,7 +45,7 @@ export class TeamsComponent implements OnInit {
   onConfirm(e: boolean):void {
     if (e) {
       this.teams = null;
-      this.teamId = 0;
+      this.teamId = null;
       this.findAllTeams();
     }
   }
